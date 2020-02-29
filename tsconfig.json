@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "module": "ES6",
+    "target": "ES6",
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "typeRoots": ["node_modules/@types"],
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": true,
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./src/public/"]
+}
