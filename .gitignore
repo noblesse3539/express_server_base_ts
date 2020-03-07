@@ -1,3 +1,6 @@
+# built Dir
+built/
+
 # Logs
 logs
 *.log
