@@ -2,7 +2,7 @@
 
 set -x
 npm run build
-npm start &
+npm run deploy &
 sleep 1
 echo $1 > .pidfile
 set +x

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./built/bin/start.js",
+    "deploy": "node ./built/bin/start.js",
     "build": "tsc"
   },
   "dependencies": {
