@@ -4,5 +4,5 @@ set -x
 npm run build
 npm run deploy &
 sleep 1
-echo $1 > .pidfile
+echo $! > .pidfile
 set +x
