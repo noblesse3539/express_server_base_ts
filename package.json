@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./built/bin/start.js",
+    "start": "tsc && concurrently \"tsc -w\" \"nodemon ./built/bin/start.js\"",
     "deploy": "node ./built/bin/start.js",
     "build": "tsc"
   },
   "dependencies": {
     "@types/express": "^4.17.2",
     "@types/node": "^13.7.7",
+    "concurrently": "^5.1.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^4.17.1",
