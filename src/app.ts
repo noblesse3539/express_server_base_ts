@@ -1,4 +1,6 @@
 import express from 'express';
+import * as db from './db';
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -8,6 +10,7 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+db.dbInit();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
