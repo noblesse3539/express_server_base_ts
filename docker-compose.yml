@@ -1,0 +1,51 @@
+version: '3.7'
+services:
+  db:
+    image: mysql/mysql-server
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      mysql-net:
+        ipv4_address: 172.23.0.3
+    ports:
+      - "33060:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql_secret
+      # - MYSQL_ROOT_PASSWORD=aaaa
+      - MYSQL_USER=admin
+      # - MYSQL_PASSWORD=aaa
+      - MYSQL_PASSWORD_FILE=/run/secrets/mysql_secret
+      # - MYSQL_HOST=172.23.0.2
+      - MYSQL_DATABASE=ketchupdb
+      - character-set-server=utf8mb4
+      - collation-server=utf8mb4_col
+    secrets:
+      - mysql_secret
+
+  server:
+    depends_on:
+      - db
+    build:
+      context: ./server
+    networks:
+      mysql-net:
+        ipv4_address: 172.23.0.2
+    ports:
+      - 3000:3000
+    networks:
+      - mysql-net
+
+secrets:
+  mysql_secret:
+    file: secrets/mysql_secret.txt
+
+volumes:
+  db_data:
+
+networks:
+  mysql-net:
+    internal: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.23.0.0/16

@@ -1,15 +1,15 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from 'sequelize';
 
 export function dbInit() {
-  const sequelize = new Sequelize('ketchupdb', 'root', '0000', {
-    host: '172.19.0.2',
+  const sequelize = new Sequelize('ketchupdb', 'root', 'aaaa', {
+    host: 'localhost',
     dialect: 'mysql',
-    port: 3306,
+    port: 33060,
     pool: {
       max: 5,
       min: 0,
-      acquire: 30000,
-      idle: 10000
+      acquire: 60000,
+      idle: 30000
     }
   });
 
