@@ -42,7 +42,6 @@ volumes:
 
 networks:
   mysql-net:
-    internal: true
     ipam:
       driver: default
       config:
