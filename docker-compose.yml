@@ -24,7 +24,7 @@ services:
     depends_on:
       - db
     build:
-      context: ./
+      context: ./server
     networks:
       mysql-net:
         ipv4_address: 172.23.0.2
