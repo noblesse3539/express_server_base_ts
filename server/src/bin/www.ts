@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('backend:server');
-var http = require('http');
+import app from '../app';
+import debug from 'debug';
+import http from 'http';
+
+debug('backend:server');
 
 /**
  * Get port from environment and store in Express.
@@ -82,6 +84,6 @@ function onError(error: NodeJS.ErrnoException) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port;
   debug('Listening on ' + bind);
 }

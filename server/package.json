@@ -1,15 +1,19 @@
 {
+  "type": "module",
   "name": "backend",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"nodemon ./built/bin/start.js\"",
-    "deploy": "node ./built/bin/start.js",
+    "start": "tsc && concurrently \"tsc -w\" \"nodemon --experimental-modules --es-module-specifier-resolution=node ./built/bin/www.js\"",
+    "deploy": "node --experimental-modules --es-module-specifier-resolution=node ./built/bin/www.js",
     "build": "tsc"
   },
   "dependencies": {
     "@types/bluebird": "^3.5.30",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/debug": "^4.1.5",
     "@types/express": "^4.17.2",
+    "@types/morgan": "^1.9.0",
     "@types/node": "^13.7.7",
     "@types/validator": "^12.0.1",
     "concurrently": "^5.1.0",
@@ -23,6 +27,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
+    "@babel/plugin-transform-async-to-generator": "^7.8.3",
     "@babel/preset-env": "^7.8.6",
     "@babel/register": "^7.8.6",
     "typescript": "^3.8.3"

@@ -1,24 +1,25 @@
-import { Sequelize, Model, DataTypes, BuildOptions } from 'sequelize';
+import sequelize from 'sequelize';
+const { Sequelize, Model, DataTypes } = sequelize;
+import { sleep } from './utils/timer';
 
-export function dbInit() {
-  const sequelize = new Sequelize('ketchupdb', 'root', 'aaaa', {
-    host: 'localhost',
+export async function dbInit() {
+  const sequelize = new Sequelize('ketchupdb', 'root', '0000', {
+    host: 'db',
     dialect: 'mysql',
-    port: 33060,
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 60000,
-      idle: 30000
-    }
+    port: 3306
   });
 
-  sequelize
-    .authenticate()
-    .then(() => {
+  for (let i = 1; i < 6; i++) {
+    try {
+      console.log(`connect DB... cnt: ${i}`);
+      await sequelize.authenticate();
       console.log('Connection has been established successfully,');
-    })
-    .catch(err => {
-      console.error('Unable to connect to the database:', err);
-    });
+      return;
+    } catch (err) {
+      if (i == 5) {
+        throw err;
+      }
+      await sleep(5000);
+    }
+  }
 }
