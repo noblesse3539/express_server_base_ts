@@ -33,6 +33,7 @@ services:
 volumes:
   jenkins-docker-certs:
   jenkins-data:
+  $$HOME:
 
 networks:
   jenkins-net:
