@@ -39,16 +39,8 @@
 3. Connect DB
 
     - Set password
-
       - Make file `root/secrets/mysql_secret.txt`
-
-      - In `root/server/src/db.ts`, change `password`. (Use ENV variable)
-
-        ``` typescript
-         const sequelize = new Sequelize('ketchupdb', 'root', 'password' ....
-        ```
-
-        
+        - It is ignored git tracking.
 
 ## 3. To do
 

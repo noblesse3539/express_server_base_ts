@@ -32,6 +32,8 @@ services:
       - "3000:3000"
     networks:
       - mysql-net
+    secrets:
+      - mysql_secret
 
 secrets:
   mysql_secret:

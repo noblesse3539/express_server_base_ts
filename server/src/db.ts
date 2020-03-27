@@ -1,9 +1,19 @@
 import sequelize from 'sequelize';
 const { Sequelize, Model, DataTypes } = sequelize;
 import { sleep } from './utils/timer';
+import fs from 'fs';
+const fsPromises = fs.promises;
 
 export async function dbInit() {
-  const sequelize = new Sequelize('ketchupdb', 'root', '0000', {
+  const SECRET_PATH = '/run/secrets/mysql_secret';
+  let password;
+  try {
+    password = await fsPromises.readFile(SECRET_PATH, 'utf8');
+  } catch (err) {
+    throw err;
+    return;
+  }
+  const sequelize = new Sequelize('ketchupdb', 'root', password, {
     host: 'db',
     dialect: 'mysql',
     port: 3306
