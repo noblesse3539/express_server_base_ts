@@ -1,17 +1,9 @@
 pipeline {
     agent none
     stages {
-        stage('build') {
+        stage('build and run') {
             steps {
-                sh 'docker-compose build'
-            }
-        }
-
-        stage('Deliver') {
-            steps {
-                sh 'docker-compose up'
-                input message: 'Finished using the server? (Click "Proceed" to continue)'
-                sh 'docker-compose down'
+                step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: false])
             }
         }
     }
