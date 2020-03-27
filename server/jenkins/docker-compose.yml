@@ -20,7 +20,9 @@ services:
     volumes:
       - jenkins-data:/var/jenkins_home
       - jenkins-docker-certs:/certs/client:ro
-      - home:/home
+      - type: bind
+        source: ${HOME}
+        target: /home
     ports:
       - '8080:8080'
     networks:
@@ -33,8 +35,6 @@ services:
 volumes:
   jenkins-docker-certs:
   jenkins-data:
-  home:
-    name: $HOME
 
 networks:
   jenkins-net:
