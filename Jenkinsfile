@@ -1,10 +1,8 @@
 pipeline {
-    agent any
-    stages {
-        stage('build and run') {
-            steps {
-                step([$class: 'DockerComposeBuilder', dockerComposeFile: 'docker-compose.yml', option: [$class: 'StartAllServices'], useCustomDockerComposeFile: false])
-            }
+    agent {
+        dockerfile {
+            dir 'server'
+            args '--network ketchup_mysql-net -p 3000:3000'
         }
     }
 }
