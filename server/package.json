@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "tsc && concurrently \"tsc -w\" \"nodemon --experimental-modules --es-module-specifier-resolution=node ./built/bin/www.js\"",
-    "deploy": "node --experimental-modules --es-module-specifier-resolution=node ./built/bin/www.js",
-    "build": "tsc"
+    "start:build": "tsc -w",
+    "start:run": "nodemon --experimental-modules --es-module-specifier-resolution=node build/bin/www.js",
+    "start": "concurrently npm:start:*"
   },
   "dependencies": {
     "@types/bluebird": "^3.5.30",

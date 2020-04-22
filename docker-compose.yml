@@ -25,6 +25,9 @@ services:
       - db
     build:
       context: ./server
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
     networks:
       mysql-net:
         ipv4_address: 172.23.0.2
